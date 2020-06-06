@@ -2,13 +2,24 @@ import React from "react";
 import PropTypes from "prop-types";
 import WeatherIcons from "react-weathericons";
 
-import { SUN, RAIN } from "../../../constants/WeatherConstants";
+import {
+  CLOUD,
+  SUN,
+  RAIN,
+  SNOW,
+  THUNDER,
+  DRIZZLE,
+} from "../../../constants/WeatherConstants";
 import "./styles.css";
 
-//Rellenar las varibles que se usen es el diccionario:
+//Rellenar las varibles que se usen es el diccionario mapeo:
 const icons = {
+  [CLOUD]: "cloud",
   [SUN]: "day-sunny",
   [RAIN]: "rain",
+  [SNOW]: "snow",
+  [THUNDER]: "day-thunderstorm",
+  [DRIZZLE]: "day-showers",
 };
 
 const getwehatherIcon = (weatherState) => {

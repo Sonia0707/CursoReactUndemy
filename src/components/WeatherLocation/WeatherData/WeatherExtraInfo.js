@@ -4,7 +4,7 @@ import "./styles.css";
 
 const WeatherExtraInfo = ({ humidity, wind }) => (
   <div className="weatherExtraInfoCont">
-    <span className="extraInfotext">{`Humedad: ${humidity}% -`}</span>
+    <span className="extraInfotext">{`Humedad: ${humidity}%`}</span>
     <span className="extraInfotext">{`Vientos: ${wind}`}</span>
   </div>
 );
