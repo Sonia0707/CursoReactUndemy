@@ -49,32 +49,6 @@ class App extends Component {
           <Col xs={12} md={6}>
             <Paper elevation={4}>
               <div className="details">
-                {/*Operador ternario para tener en cuenta el estado nulo:
-                 Tenemos varias opciones (Todas indican si la propiedad es null, lanza el <h1>):
-                opcion 1:
-                {city === null ? ( 
-                  <h1>No se ha selecionado ninguna Ciudad</h1>
-                ) : (
-                  <ForecastExtended city={city} />
-                )}
-                Opcion 2: 
-                {!city ? (
-                  <h1>No se ha selecionado ninguna Ciudad</h1>
-                ) : (
-                  <ForecastExtended city={city} />
-                )}
-                Opcion 3:
-                 {city ? (
-                  <ForecastExtended city={city} />
-                ) : (
-                  <h1>No se seleció ninguna Ciudad</h1>
-                )}
-                Ahora bien si lo que deseamos es que directamente no renderice nada hay 2 maneras:
-                1º Opcion:
-                    {city ? <ForecastExtended city={city} /> : null}
-                2º Opcion: (la mas comun utlizamos lo && para decir que si hay algo en ForecastExtended
-                  que renderice si no no: )
-                */}
                 {city && <ForecastExtended city={city} />}
               </div>
             </Paper>
