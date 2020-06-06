@@ -49,7 +49,9 @@ class App extends Component {
           <Col xs={12} md={6}>
             <Paper elevation={4}>
               <div className="details">
-                {/*Operador ternario para tener en cuenta el estado nulo:
+                {/* Opciones para la validacion de la props ciudad:
+                
+                Operador ternario para tener en cuenta el estado nulo:
                  Tenemos varias opciones (Todas indican si la propiedad es null, lanza el <h1>):
                 opcion 1:
                 {city === null ? ( 
