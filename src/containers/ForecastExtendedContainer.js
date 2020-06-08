@@ -12,6 +12,9 @@ ForecastExtendedContainer.propTypes = {
   city: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = ({ city }) => ({ city });
+//Objeto de FUNCIONES que se mapea y se inyecta gracias a connect como propiedades dentro del componente:
+// (setea los nuevos valores de propiedades "se ejecuta una renderización")
+const mapDispattchToprops = ({ city }) => ({ city });
 
-export default connect(mapStateToProps, null)(ForecastExtendedContainer);
+export default connect(mapDispattchToprops, null)(ForecastExtendedContainer); // Se suma: MapStateToprops(values) + MapDispattchToprops(func) = propiedades extra para el
+//(component) que son iyectadas por el connect no por otro componente externo.
