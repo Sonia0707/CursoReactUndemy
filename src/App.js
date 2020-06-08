@@ -5,6 +5,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
 import Toolbar from "@material-ui/core/Toolbar";
 import { Grid, Col, Row } from "react-flexbox-grid";
+import PropTypes from "prop-types";
 import "./App.css";
 import LocationList from "./components/LocationList";
 import ForecastExtended from "./components/ForecastExtended";
@@ -63,12 +64,13 @@ class App extends Component {
     );
   }
 }
+App.propTypes = {
+  setCity: PropTypes.func.isRequired,
+};
 
 const mapDispatchTpProps = (dispatch) => ({
   //Nombre de función setCity (Podría ser cualquier nombre no tiene que ser el mismo que el ActionCreator):
   setCity: (value) => dispatch(setCity(value)), //ActionCreator = setCity
 });
 
-const AppConnected = connect(null, mapDispatchTpProps)(App);
-
-export default AppConnected;
+export default connect(null, mapDispatchTpProps)(App);
