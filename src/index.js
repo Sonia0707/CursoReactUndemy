@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+//REDUX => Mantener un unico estado global y ir alterandolo mediante las acciones:
 import { Provider } from "react-redux";
 import { store } from "./store";
 import "./index.css";
