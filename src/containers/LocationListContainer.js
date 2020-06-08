@@ -22,6 +22,9 @@ LocationListContainer.propTypes = {
   setCity: PropTypes.func.isRequired,
   cities: PropTypes.array.isRequired,
 };
+
+//Funcion que inyecta los VALUES como propiedades: (ejecutan las acciones, "altera el estado de la aplicación")
+
 const mapDispatchTpProps = (dispatch) => ({
   //Nombre de función setCity (Podría ser cualquier nombre no tiene que ser el mismo que el ActionCreator):
   setCity: (value) => dispatch(setCity(value)), //ActionCreator = setCity
