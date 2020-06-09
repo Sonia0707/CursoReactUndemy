@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { setCity } from "./../actions";
+import { setSelectedCity } from "./../actions";
 import LocationList from "./../components/LocationList";
 
 class LocationListContainer extends Component {
@@ -27,7 +27,8 @@ LocationListContainer.propTypes = {
 
 const mapDispatchTpProps = (dispatch) => ({
   //Nombre de función setCity (Podría ser cualquier nombre no tiene que ser el mismo que el ActionCreator):
-  setCity: (value) => dispatch(setCity(value)), //ActionCreator = setCity
+  //Cambiamos el nombre del dispatch porque ahora la accion se produce dentro setSelectedCity
+  setCity: (value) => dispatch(setSelectedCity(value)), //ActionCreator = setCity
 });
 
 export default connect(null, mapDispatchTpProps)(LocationListContainer);
