@@ -27,9 +27,11 @@ const ForecastExtended = ({ city, forecastData }) => (
   </div>
 );
 
+//La propiedad forecastData que nos llega no es requerida si o si, porque puede venir undefine ya que en el componente tenemos
+//la ya una respuesta del indicador de progreso: cargando...
 ForecastExtended.propTypes = {
   city: PropTypes.string.isRequired,
-  forecastData: PropTypes.array.isRequired,
+  forecastData: PropTypes.array,
 };
 
 export default ForecastExtended;
