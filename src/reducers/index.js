@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { createSelector } from "reselect";
 import {
   cities,
   getForecastDataFromCities as _getForecastDataFromCities,
@@ -11,10 +12,19 @@ export default combineReducers({
 });
 
 //Generamos la función getcity le pasamos el estado global de la aplicación y de hay obtenemos solamente la parte de city, que se la pasamos la función,
-//generada en el reducers de cities => getForecastDataFromCities. Y exportamos para que lo recoja el container
-export const getcity = (state) => state.city;
+//generada en el reducers de cities
+//Cremos el createSelector pasandole los parametros del estado de la city
+export const getcity = createSelector(
+  (state) => state.city,
+  (city) => city
+);
 
-//Generamos aquí el getForecastDataFromCities con el mismo nombre que la función que tenemos el cities, recogemos los valores generados por los dos reducers,
-// y exportamos para mandarselo al contenedor:
-export const getForecastDataFromCities = (state) =>
-  _getForecastDataFromCities(state.cities, getcity(state));
+//Generamos aquí el getForecastDataFromCities con el mismo nombre que la función que tenemos el cities
+//Cremos el createSelector pasandole los parametros del estado de las cities y las funciones getCity que ya tiene el createSelector y la función _getForecastDataFromCities
+// generada en el reducers cities que tambien tiene el createSelector
+
+export const getForecastDataFromCities = createSelector(
+  (state) => state.cities, // 1º Función
+  getcity, // 2º Función
+  _getForecastDataFromCities //resultFunc
+);
