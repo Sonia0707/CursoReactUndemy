@@ -1,3 +1,4 @@
+import { createSelector } from "reselect";
 //Importamos la accion que recoge los datos del servidor:
 import { SET_FORECAST_DATA } from "./../actions";
 
@@ -23,5 +24,9 @@ export const cities = (state = {}, action) => {
 
 //La exportamos para poder pasardselo al ForecastExtendedContainer. Le pasamos solamente el state de la city:
 //Así que ponemos el mismo filtro que teniamos establecido en el container: si al clicar es diferente de null, solicitamos forecastData:
-export const getForecastDataFromCities = (state, city) =>
-  state[city] && state[city].forecastData;
+
+//Utilizamos tambien el createSelector
+export const getForecastDataFromCities = createSelector(
+  (state, city) => state[city] && state[city].forecastData, //Función con 2 parametros, sobre los que actua el createSelecto
+  (forecastData) => forecastData // => Resultado final => resultFunc
+);
