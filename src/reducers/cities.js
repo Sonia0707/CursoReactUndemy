@@ -18,9 +18,10 @@ export const cities = (state = {}, action) => {
 };
 
 //Vamos a crear un selector para acortar el estado global de la aplicación para trabajar sobre el ya que es el punto donde se conoce a la perfección el estado,
+//de city y forescastData;
 //por eso es el punto mas adecuado para hacerlo:
 
-//La exportamos para poder pasardselo al ForecastExtendedContainer. Le pasamos solamente el state de la city que es el que controla este reducer:
+//La exportamos para poder pasardselo al ForecastExtendedContainer. Le pasamos solamente el state de la city:
 //Así que ponemos el mismo filtro que teniamos establecido en el container: si al clicar es diferente de null, solicitamos forecastData:
 export const getForecastDataFromCities = (state, city) =>
   state[city] && state[city].forecastData;
