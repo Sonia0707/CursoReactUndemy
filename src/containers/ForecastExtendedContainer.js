@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { getForecastDataFromCities } from "./../reducers/cities"; //Importamos selector para poder utilizar en el connect
+import { getForecastDataFromCities, getcity } from "./../reducers"; //Cambio va a ser generico para coger los selectors
 import ForecastExtended from "../components/ForecastExtended";
 
 //Container que controla los datos  que se le mandan al  Component ForecastExtended
@@ -32,11 +32,15 @@ ForecastExtendedContainer.propTypes = {
 // y en un proyecto muy grande podría ser un problema... Así que aquí vamos a utilizar el patron selector para hacerlo más eficiente y lo crearemos en los
 // reducers
 
-//Cambiamos el estado a state y llamamos al primer selector, de momento solo tenemos el de city y no el de cities, hay que cambiarlo para que tambien
-//conozca que tenemos un diccionario...
+//Cambiamos el estado a state y llamamos al primer selector, de momento solo tenemos el de cities y no el de city, hay que cambiarlo para que tambien
+//conozca que tenemos en el diccionario...
+
+//Realizamos cambio: pasandole al getForecastDataFromCities el state y importamos desde el index.js de reducers ((Cambiomos el index.js))
+
+//Nivel de asbtracción mas alto para el estado de city y forecastData:
 const mapDispattchToprops = (state) => ({
-  city: state.city,
-  forecastData: getForecastDataFromCities(state.cities, state.city),
+  city: getcity(state),
+  forecastData: getForecastDataFromCities(state),
 });
 
 export default connect(mapDispattchToprops, null)(ForecastExtendedContainer); // Se suma: MapStateToprops(values) + MapDispattchToprops(func) = propiedades extra para el
