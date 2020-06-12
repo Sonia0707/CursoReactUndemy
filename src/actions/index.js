@@ -2,7 +2,6 @@
 import transformForecast from "./../services/transformForecast";
 import transformWeather from "./../services/transformWeather";
 import getUrlWeatherByCity from "./../services/getUrlWeatherBtCity";
-import { city } from "../reducers/city";
 
 //Constantes de las acciones que enviaremos a los reducers para comprobar el state:
 export const SET_CITY = "SET_CITY";
@@ -10,7 +9,7 @@ export const SET_FORECAST_DATA = "SET_FORECAST_DATA";
 export const SET_WEATHER = "SET_WEATHER";
 
 export const GET_WEATHER_CITY = "GET_WEATHER_CITY";
-export const SET_WEATHER_CITY = "sET_WEATHER_CITY";
+export const SET_WEATHER_CITY = "SET_WEATHER_CITY";
 
 const setCity = (payload) => ({ type: "SET_CITY", payload }); //literal correspondiente al estado de la ciudad
 // (ya no hace falta la exportación porque internamente lo va hacer el setSelectedCity mediante el  dispatch(setCity(payload));)
@@ -48,16 +47,17 @@ export const setSelectedCity = (payload) => {
 export const setWeather = (payload) => {
   return (dispatch) => {
     payload.forEach((city) => {
-      dispatch(getWeatherCity(city));
+      console.log(getWeatherCity(city)); // Si que lleva una ciudad la de por defecto Buenos Aires,ar
+      dispatch(getWeatherCity(city)); //Error al hacer el dispatch....??????????????????????
+      console.log(`Resultado dispatch ${dispatch(getWeatherCity(city))}`);
 
       const api_weather = getUrlWeatherByCity(city);
       fetch(api_weather)
-        .then((data) => {
-          return data.json();
+        .then((resolve) => {
+          return resolve.json();
         })
         .then((weather_data) => {
           const weather = transformWeather(weather_data);
-
           dispatch(setWeatherCity({ city, weather }));
         });
     });
