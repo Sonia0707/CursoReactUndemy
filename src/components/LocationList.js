@@ -11,9 +11,14 @@ const LocationList = ({ cities, onSelectedLocation }) => {
   const strToComponents = (cities) =>
     cities.map((city) => (
       <WeatherLocation
-        key={city}
-        city={city}
-        onWeatherLocationClick={() => hanlWeatherLocationClic(city)}
+        //Provee de una clave para la ciudad
+        key={city.key}
+        //Provee el nombre de la ciudad
+        city={city.name}
+        //Boton de click se refresca con city.name
+        onWeatherLocationClick={() => hanlWeatherLocationClic(city.name)}
+        //Proveer al componente WeatherLocation de la data:
+        data={city.data}
       />
     ));
 
