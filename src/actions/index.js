@@ -48,7 +48,7 @@ export const setWeather = (payload) => {
   return (dispatch) => {
     payload.forEach((city) => {
       console.log(getWeatherCity(city)); // Si que lleva una ciudad la de por defecto Buenos Aires,ar
-      dispatch(getWeatherCity(city)); //Error al hacer el dispatch....??????????????????????
+      dispatch(getWeatherCity(city)); //Error al hacer el dispatch....???????????????????????????
       console.log(`Resultado dispatch ${dispatch(getWeatherCity(city))}`);
 
       const api_weather = getUrlWeatherByCity(city);
