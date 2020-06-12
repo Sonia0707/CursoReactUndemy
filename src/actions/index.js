@@ -1,9 +1,16 @@
 //Importamos los datos que nos arroja el servidor:
 import transformForecast from "./../services/transformForecast";
+import transformWeather from "./../services/transformWeather";
+import getUrlWeatherByCity from "./../services/getUrlWeatherBtCity";
+import { city } from "../reducers/city";
 
 //Constantes de las acciones que enviaremos a los reducers para comprobar el state:
 export const SET_CITY = "SET_CITY";
 export const SET_FORECAST_DATA = "SET_FORECAST_DATA";
+export const SET_WEATHER = "SET_WEATHER";
+
+export const GET_WEATHER_CITY = "GET_WEATHER_CITY";
+export const SET_WEATHER_CITY = "sET_WEATHER_CITY";
 
 const setCity = (payload) => ({ type: "SET_CITY", payload }); //literal correspondiente al estado de la ciudad
 // (ya no hace falta la exportación porque internamente lo va hacer el setSelectedCity mediante el  dispatch(setCity(payload));)
@@ -11,6 +18,9 @@ const setCity = (payload) => ({ type: "SET_CITY", payload }); //literal correspo
 //Fetch de de los datos del forecast:
 
 const setForecastData = (payload) => ({ type: SET_FORECAST_DATA, payload }); //Accion que hace la petición al servidor
+
+const getWeatherCity = (payload) => ({ tipe: GET_WEATHER_CITY, payload });
+const setWeatherCity = (payload) => ({ tipe: SET_WEATHER_CITY, payload });
 
 const api_key = "f99bbd9e4959b513e9bd0d7f7356b38d";
 const url = "https://api.openweathermap.org/data/2.5/forecast";
@@ -33,5 +43,23 @@ export const setSelectedCity = (payload) => {
         //(Resolución de petición): Le pasamos la city y la resolución de la promise como pronostico extendido.
         dispatch(setForecastData({ city: payload, forecastData }));
       });
+  };
+};
+export const setWeather = (payload) => {
+  return (dispatch) => {
+    payload.forEach((city) => {
+      dispatch(getWeatherCity(city));
+
+      const api_weather = getUrlWeatherByCity(city);
+      fetch(api_weather)
+        .then((data) => {
+          return data.json();
+        })
+        .then((weather_data) => {
+          const weather = transformWeather(weather_data);
+
+          dispatch(setWeatherCity({ city, weather }));
+        });
+    });
   };
 };
