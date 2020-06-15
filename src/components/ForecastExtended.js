@@ -16,7 +16,7 @@ const renderForecastItemDays = (forecastData) => {
 
 //Cambiamos el componente de  clase y lo  convertimos a un funcional component (Componente presentacional), ya que  ahora las peticiones las mandamos por las acciones de redux
 const renderProgress = () => {
-  return "Cargando pronostico estendido...";
+  return <h3>Cargando pronostico estendido...</h3>;
 };
 
 const ForecastExtended = ({ city, forecastData }) => (
