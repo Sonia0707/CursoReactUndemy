@@ -13,7 +13,7 @@ export const cities = (state = {}, action) => {
     case SET_FORECAST_DATA: {
       const { city, forecastData } = action.payload; //Nos llega la city y el forecastData del SET_FORECAST_DATA
 
-      return { ...state, [city]: { forecastData } }; //Falta refactorizar tambien el weather para que nos los guarde en nuestro diccionario.
+      return { ...state, [city]: { ...state[city], forecastData } }; //Falta refactorizar tambien el weather para que nos los guarde en nuestro diccionario.
 
       //[city] => de esta manera busca en el dicionario la city que le pasemos (La clave),
       // buscando su forecastData: que dentro si hace poco que se ha mirado pues no manda ninguna petición al servicio, si no que recoge los datos almacenados,
@@ -23,12 +23,12 @@ export const cities = (state = {}, action) => {
     //Cuando el servidor no retorna nada: (Y sale el indicador de proceso al ser weather null)
     case GET_WEATHER_CITY: {
       const city = action.payload;
-      return { ...state, [city]: { weather: null } };
+      return { ...state, [city]: { ...state[city], weather: null } };
     }
     //Retorna lo que el servidor manda:
     case SET_WEATHER_CITY: {
       const { city, weather } = action.payload;
-      return { ...state, [city]: { weather } };
+      return { ...state, [city]: { ...state[city], weather } };
     }
 
     default:
