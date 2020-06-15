@@ -1,4 +1,6 @@
 import { createSelector } from "reselect";
+import toPairs from "lodash.topairs";
+
 //Importamos la accion que recoge los datos del servidor:
 import {
   SET_FORECAST_DATA,
@@ -18,10 +20,12 @@ export const cities = (state = {}, action) => {
       // de manera inmediata. De esta forma la aplicción a nivel de usuario es de mas calidad porque la respuesta es rapidisima;
     }
 
+    //Cuando el servidor no retorna nada: (Y sale el indicador de proceso al ser weather null)
     case GET_WEATHER_CITY: {
       const city = action.payload;
       return { ...state, [city]: { weather: null } };
     }
+    //Retorna lo que el servidor manda:
     case SET_WEATHER_CITY: {
       const { city, weather } = action.payload;
       return { ...state, [city]: { weather } };
@@ -43,4 +47,9 @@ export const cities = (state = {}, action) => {
 export const getForecastDataFromCities = createSelector(
   (state, city) => state[city] && state[city].forecastData, //Función con 2 parametros, sobre los que actua el createSelecto
   (forecastData) => forecastData // => Resultado final => resultFunc
+);
+
+export const getWeatherCities = createSelector(
+  (state) => [],
+  (cities) => cities
 );
