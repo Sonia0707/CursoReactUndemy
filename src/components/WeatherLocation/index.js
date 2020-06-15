@@ -37,12 +37,16 @@ import "./styles.css";
 const WeatherLocation = ({ onWeatherLocationClick, city, data }) => (
   <div className="weatherLocationCont" onClick={onWeatherLocationClick}>
     <Location city={city} />
-    {data ? <WeatherData data={data} /> : <CircularProgress />}
+    {data ? (
+      <WeatherData data={data} />
+    ) : (
+      <CircularProgress size={60} thickness={7} />
+    )}
   </div>
 );
 
 WeatherLocation.propTypes = {
-  city: PropTypes.string.isRequired,
+  city: PropTypes.string,
   onWeatherLocationClick: PropTypes.func,
   data: PropTypes.shape({
     temperature: PropTypes.number.isRequired,
