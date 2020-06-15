@@ -8,11 +8,7 @@ import ForecastExtended from "../components/ForecastExtended";
 class ForecastExtendedContainer extends Component {
   render() {
     const { city, forecastData } = this.props;
-    return (
-      this.props.city && (
-        <ForecastExtended city={city} forecastData={forecastData} />
-      )
-    );
+    return city && <ForecastExtended city={city} forecastData={forecastData} />;
   }
 }
 //La propiedad forecastData que nos llega no es requerida si o si, porque puede venir undefine ya que en el componente tenemos
