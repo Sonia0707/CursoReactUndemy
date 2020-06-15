@@ -49,7 +49,16 @@ export const getForecastDataFromCities = createSelector(
   (forecastData) => forecastData // => Resultado final => resultFunc
 );
 
+//Función auxiliar para el paso del objeto cities, con todas sus propiedades:
+//toPairs(cities) => Pasa las propiedades clave = valor, la clave sería el nombre de la ciudad y el valor el contenido de dentro
+const fromObjToArray = (cities) =>
+  toPairs(cities).map(([key, value]) => ({
+    key,
+    name: key,
+    data: value.weather,
+  }));
+
 export const getWeatherCities = createSelector(
-  (state) => [],
+  (state) => fromObjToArray(state),
   (cities) => cities
 );
