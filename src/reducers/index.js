@@ -3,6 +3,7 @@ import { createSelector } from "reselect";
 import {
   cities,
   getForecastDataFromCities as _getForecastDataFromCities,
+  getWeatherCities as _getWeatherCities,
 } from "./cities"; //Importamos con un alias para poder reutilizarla con el mismo nombre
 import { city } from "./city";
 
@@ -27,4 +28,9 @@ export const getForecastDataFromCities = createSelector(
   (state) => state.cities, // 1º Función
   getcity, // 2º Función
   _getForecastDataFromCities //resultFunc
+);
+
+export const getWeatherCities = createSelector(
+  (state) => state.cities,
+  _getWeatherCities
 );
