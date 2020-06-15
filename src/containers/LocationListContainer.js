@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { setSelectedCity, setWeather } from "./../actions";
+import { getWeatherCities } from "./../reducers";
 import LocationList from "./../components/LocationList";
 
 class LocationListContainer extends Component {
@@ -16,7 +17,7 @@ class LocationListContainer extends Component {
   render() {
     return (
       <LocationList
-        cities={this.props.cities}
+        cities={this.props.citiesWeather}
         onSelectedLocation={this.handSelectionLocation}
       />
     );
@@ -26,6 +27,7 @@ class LocationListContainer extends Component {
 LocationListContainer.propTypes = {
   setCity: PropTypes.func.isRequired,
   cities: PropTypes.array.isRequired,
+  citiesWeather: PropTypes.array,
 };
 
 //Funcion que inyecta los VALUES como propiedades: (ejecutan las acciones, "altera el estado de la aplicación")
@@ -40,4 +42,9 @@ const mapDispatchTpProps = (dispatch) => ({
   setWeather: (cities) => dispatch(setWeather(cities)), //ActionCreator = setWeather
 });
 
-export default connect(null, mapDispatchTpProps)(LocationListContainer);
+const mapStateToProps = (state) => ({ citiesWeather: getWeatherCities(state) });
+
+export default connect(
+  mapStateToProps,
+  mapDispatchTpProps
+)(LocationListContainer);
