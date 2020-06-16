@@ -13,7 +13,10 @@ export const cities = (state = {}, action) => {
     case SET_FORECAST_DATA: {
       const { city, forecastData } = action.payload; //Nos llega la city y el forecastData del SET_FORECAST_DATA
 
-      return { ...state, [city]: { ...state[city], forecastData } }; //Falta refactorizar tambien el weather para que nos los guarde en nuestro diccionario.
+      return {
+        ...state,
+        [city]: { ...state[city], forecastData, forecastDataDate: new Date() }, //Utilizamos el forecastDataDate para coger la fecha exacta y pasarsela al index.js
+      };
 
       //[city] => de esta manera busca en el dicionario la city que le pasemos (La clave),
       // buscando su forecastData: que dentro si hace poco que se ha mirado pues no manda ninguna petición al servicio, si no que recoge los datos almacenados,
